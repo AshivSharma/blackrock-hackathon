@@ -1,28 +1,60 @@
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { makeStyles } from "@material-ui/core";
 import DividerWithText from "../components/DividerWithText";
+import * as ROUTES from "../routes/routes";
 
 export default function Homepage() {
   const history = useHistory();
+  const [stockSelected, setStockSelected] = useState("");
+  const [stockInput, setStockInput] = useState("");
+  const [stockOptions, setStockOptions] = useState([]);
+
   var Alpha = require("alpha_vantage_api_wrapper").Alpha;
   var alpha = new Alpha("B02YL7M1461GOMXJ");
+
+  const searchStock = async (input) => {
+    try {
+      await alpha.stocks.search(input).then((res) => {
+        setStockOptions(res.bestMatches);
+      });
+    } catch (e) {
+      setStockInput("");
+      setStockOptions([]);
+      console.error("ERROR: ", e);
+    }
+  };
+
   useEffect(() => {
     document.title = "Homepage";
-    // alpha.stocks.intraday("AAPL").then((res) => {
-    //   console.log(res);
-    // });
   }, []);
+
+  useEffect(() => {
+    if (stockInput.length > 0) {
+      searchStock(stockInput);
+    }
+    if (stockInput.length === 0) {
+      setStockInput("");
+      setStockOptions([]);
+    }
+  }, [stockInput]);
+  // useEffect(() => {
+  //   if (stockSelected !== "") {
+  //     //history.push("/industrytable");
+  //   }
+  // }, [stockSelected]);
+  console.log("stockinput", stockInput);
+  console.log("stockSelected", stockSelected);
+
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen ">
       <div className="flex flex-col mx-auto w-full items-center gap-7">
         {/* HEADER */}
         <div>
-          <p class="font-thin font-mono Consolas text-3xl antialiased">
+          <p className="font-thin font-mono Consolas text-3xl antialiased">
             BlackRock Hackathon
           </p>
         </div>
@@ -31,25 +63,27 @@ export default function Homepage() {
           <div className="bg-white flex rounded-full shadow-xl">
             <Autocomplete
               id="combo-box"
-              autoComplete={true}
-              autoSelect
               autoHighlight={true}
-              options={top100Films}
+              options={stockOptions}
               placeholder="Search by Stock Name or Ticker"
               noOptionsText="Stock not available"
-              getOptionLabel={(option) => option.ticker}
+              getOptionLabel={(option) => option["2. name"]}
               renderOption={(option) => (
                 <React.Fragment>
-                  <span>{option.ticker}</span> - {option.year}
+                  <span>
+                    {option["2. name"]} ({option["1. symbol"]})
+                  </span>
                 </React.Fragment>
               )}
               renderInput={(params) => (
-                <div class="rounded-l-full w-full py-1 px-6 text-gray-700 leading-tight focus:outline-none">
+                <div className="rounded-l-full w-full py-1 px-6 text-gray-700 leading-tight focus:outline-none">
                   <TextField
                     color="primary"
+                    autoFocus
                     placeholder="Search by Stock Name or Ticker"
                     {...params}
                     label="Search"
+                    onChange={({ target }) => setStockInput(target.value)}
                     InputProps={{
                       ...params.InputProps,
                       disableUnderline: true,
@@ -74,21 +108,3 @@ export default function Homepage() {
     </div>
   );
 }
-const top100Films = [
-  { ticker: "Tesla", year: "1994" },
-  { ticker: "jhdakd", year: "1994" },
-  { ticker: "dsnafjkas", year: "1994" },
-  { ticker: "Tiruwa", year: "1994" },
-  { ticker: "Tesla", year: "1994" },
-  { ticker: "skjs", year: "1994" },
-  { ticker: "dsfssfafnafjkas", year: "1994" },
-  { ticker: "Tiruwa", year: "1994" },
-  { ticker: "Tesla", year: "1994" },
-  { ticker: "jdsfdsfhdakd", year: "1994" },
-  { ticker: "asdhjsa", year: "1994" },
-  { ticker: "Tiruwa", year: "1994" },
-  { ticker: "Tesla", year: "1994" },
-  { ticker: "jhdakd", year: "1994" },
-  { ticker: "iuhdsjkfsh", year: "1994" },
-  { ticker: "Tiruwa", year: "1994" },
-];
