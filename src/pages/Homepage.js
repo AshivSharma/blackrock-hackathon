@@ -28,13 +28,22 @@ export default function Homepage() {
     }
   };
 
+  const handleSubmit = () => {
+    if (stockSelected !== "") {
+      console.log(stockSelected);
+      // history.push("/table");
+    }
+  };
+
   useEffect(() => {
     document.title = "Homepage";
   }, []);
 
   useEffect(() => {
     if (stockInput.length > 0) {
-      searchStock(stockInput);
+      setTimeout(function () {
+        searchStock(stockInput);
+      }, 4000);
     }
     if (stockInput.length === 0) {
       setStockInput("");
@@ -63,11 +72,11 @@ export default function Homepage() {
           <div className="bg-white flex rounded-full shadow-xl">
             <Autocomplete
               id="combo-box"
-              autoHighlight={true}
               options={stockOptions}
               placeholder="Search by Stock Name or Ticker"
               noOptionsText="Stock not available"
-              getOptionLabel={(option) => option["2. name"]}
+              getOptionLabel={(option) => option["1. symbol"]}
+              onSelect={(target) => setStockSelected(target.target.value)}
               renderOption={(option) => (
                 <React.Fragment>
                   <span>
@@ -79,7 +88,6 @@ export default function Homepage() {
                 <div className="rounded-l-full w-full py-1 px-6 text-gray-700 leading-tight focus:outline-none">
                   <TextField
                     color="primary"
-                    autoFocus
                     placeholder="Search by Stock Name or Ticker"
                     {...params}
                     label="Search"
@@ -98,6 +106,7 @@ export default function Homepage() {
                 </div>
               )}
             />
+            <button onClick={handleSubmit}>Test</button>
           </div>
           {/* DIVIDER */}
           <div className="mt-10 w-4/5 ml-16">
