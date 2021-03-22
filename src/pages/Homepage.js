@@ -6,12 +6,15 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import DividerWithText from "../components/DividerWithText";
 import * as ROUTES from "../routes/routes";
+import SearchIcon from "@material-ui/icons/Search";
+import { IconButton } from "@material-ui/core";
 
 export default function Homepage() {
   const history = useHistory();
   const [stockSelected, setStockSelected] = useState("");
   const [stockInput, setStockInput] = useState("");
   const [stockOptions, setStockOptions] = useState([]);
+  const [isLoading, setisLoading] = useState();
 
   var Alpha = require("alpha_vantage_api_wrapper").Alpha;
   var alpha = new Alpha("B02YL7M1461GOMXJ");
@@ -20,6 +23,7 @@ export default function Homepage() {
     try {
       await alpha.stocks.search(input).then((res) => {
         setStockOptions(res.bestMatches);
+        setisLoading(false);
       });
     } catch (e) {
       setStockInput("");
@@ -31,7 +35,7 @@ export default function Homepage() {
   const handleSubmit = () => {
     if (stockSelected !== "") {
       console.log(stockSelected);
-      // history.push("/table");
+      history.push(ROUTES.INDUSTRY_TABLE);
     }
   };
 
@@ -41,22 +45,16 @@ export default function Homepage() {
 
   useEffect(() => {
     if (stockInput.length > 0) {
+      setisLoading(true);
       setTimeout(function () {
         searchStock(stockInput);
-      }, 4000);
+      }, 1500);
     }
     if (stockInput.length === 0) {
       setStockInput("");
       setStockOptions([]);
     }
   }, [stockInput]);
-  // useEffect(() => {
-  //   if (stockSelected !== "") {
-  //     //history.push("/industrytable");
-  //   }
-  // }, [stockSelected]);
-  console.log("stockinput", stockInput);
-  console.log("stockSelected", stockSelected);
 
   return (
     <div className="container flex mx-auto max-w-screen-md items-center h-screen ">
@@ -76,6 +74,8 @@ export default function Homepage() {
               placeholder="Search by Stock Name or Ticker"
               noOptionsText="Stock not available"
               getOptionLabel={(option) => option["1. symbol"]}
+              loading={isLoading}
+              loadingText="Searching for Ticker..."
               onSelect={(target) => setStockSelected(target.target.value)}
               renderOption={(option) => (
                 <React.Fragment>
@@ -85,7 +85,7 @@ export default function Homepage() {
                 </React.Fragment>
               )}
               renderInput={(params) => (
-                <div className="rounded-l-full w-full py-1 px-6 text-gray-700 leading-tight focus:outline-none">
+                <div className="rounded-l-full flex w-full py-1 px-6 text-gray-700 leading-tight focus:outline-none">
                   <TextField
                     color="primary"
                     placeholder="Search by Stock Name or Ticker"
@@ -100,13 +100,17 @@ export default function Homepage() {
                     style={{
                       marginRight: "15px",
                       marginBottom: "10px",
-                      width: "700px",
+                      width: "650px",
                     }}
                   />
+                  <div className="mt-2">
+                    <IconButton aria-label="search" onClick={handleSubmit}>
+                      <SearchIcon />
+                    </IconButton>
+                  </div>
                 </div>
               )}
             />
-            <button onClick={handleSubmit}>Test</button>
           </div>
           {/* DIVIDER */}
           <div className="mt-10 w-4/5 ml-16">
