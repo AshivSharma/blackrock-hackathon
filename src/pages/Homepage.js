@@ -1,13 +1,18 @@
 import { Link, useHistory } from "react-router-dom";
 import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import DividerWithText from "../components/DividerWithText";
 import * as ROUTES from "../routes/routes";
 import SearchIcon from "@material-ui/icons/Search";
 import { IconButton } from "@material-ui/core";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import Select from "@material-ui/core/Select";
+import FormControl from "@material-ui/core/FormControl";
+import StockChart from "../components/StockChart";
 
 export default function Homepage() {
   const history = useHistory();
@@ -23,8 +28,8 @@ export default function Homepage() {
     try {
       await alpha.stocks.search(input).then((res) => {
         setStockOptions(res.bestMatches);
-        setisLoading(false);
       });
+      setisLoading(false);
     } catch (e) {
       setStockInput("");
       setStockOptions([]);
@@ -37,6 +42,12 @@ export default function Homepage() {
       console.log(stockSelected);
       history.push(ROUTES.INDUSTRY_TABLE);
     }
+    alpha.sector
+      .performance()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => console.log(e["Meta Data"]));
   };
 
   useEffect(() => {
@@ -61,8 +72,8 @@ export default function Homepage() {
       <div className="flex flex-col mx-auto w-full items-center gap-7">
         {/* HEADER */}
         <div>
-          <p className="font-thin font-mono Consolas text-3xl antialiased">
-            BlackRock Hackathon
+          <p className="font-thin font-mono Consolas text-4xl antialiased">
+            Brighter
           </p>
         </div>
         {/* SEARCH COMPONENT */}
@@ -80,7 +91,7 @@ export default function Homepage() {
               renderOption={(option) => (
                 <React.Fragment>
                   <span>
-                    {option["2. name"]} ({option["1. symbol"]})
+                    {option["1. symbol"]} ({option["2. name"]})
                   </span>
                 </React.Fragment>
               )}
@@ -117,6 +128,21 @@ export default function Homepage() {
             <DividerWithText children="Or" />
           </div>
         </div>
+        {/* <div>
+          <FormControl style={{ minWidth: 500 }}>
+            <p className="font-thin text-align-center font-mono Consolas text-4xl antialiased">
+              Test
+            </p>
+            <Select defaultValue="test" id="grouped-select">
+              <ListSubheader>Category 1</ListSubheader>
+              <MenuItem value={1}>Option 1</MenuItem>
+              <MenuItem value={2}>Option 2</MenuItem>
+              <ListSubheader>Category 2</ListSubheader>
+              <MenuItem value={3}>Option 3</MenuItem>
+              <MenuItem value={4}>Option 4</MenuItem>
+            </Select>
+          </FormControl>
+        </div> */}
       </div>
     </div>
   );
