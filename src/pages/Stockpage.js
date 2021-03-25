@@ -6,15 +6,19 @@ import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import { useState } from "react";
 import axios from "axios";
+import StockChart from "../components/StockChart";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: 500,
     width: "70%",
-    marginTop: 200,
+    marginTop: 10,
     marginLeft: "auto",
-    marginRight: "auto",
-    backgroundColor: "#333",
+    marginRight: 80,
+    backgroundColor: "transparent",
+    borderColor: "transparent",
+    borderWidth: 0,
   },
 }));
 
@@ -45,6 +49,7 @@ export default function Stockpage(props) {
         `https://newsapi.org/v2/everything?q=${stockSelected}&apiKey=${NewsAPIKey}`
       )
       .then((res) => {
+        console.log(res.data.articles);
         setNewsInfo(res.data.articles);
       });
   }, []);
@@ -54,7 +59,7 @@ export default function Stockpage(props) {
       <Box
         display="flex"
         justifyContent="center"
-        m={5}
+        m={2}
         fontSize={30}
         fontWeight={100}
       >
@@ -80,13 +85,29 @@ export default function Stockpage(props) {
           Stock Price Today: ${currentDayPrice}
         </Box>
       </Box>
+      <Box>
+        <StockChart />
+      </Box>
+
       <div>
+        <Box
+          display="flex"
+          justifyContent="center"
+          m={2}
+          fontSize={20}
+          fontWeight={100}
+        >
+          News
+        </Box>
         <Card style={{ overflowY: "scroll" }} className={classes.root}>
           <CardContent>
             {newsInfo.map((article) => {
               return (
                 <NewsComp
+                  key={article["title"]}
                   title={article["title"]}
+                  description={article["description"]}
+                  date={article["publishedAt"]}
                   link={article["url"]}
                   image={article["urlToImage"]}
                 />

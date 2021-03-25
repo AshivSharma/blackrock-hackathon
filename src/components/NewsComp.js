@@ -2,23 +2,21 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import ButtonBase from "@material-ui/core/ButtonBase";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   bgColor: {
     borderColor: "error.main",
-    width: "100%",
+    width: "70%",
     height: "100%",
   },
 
   paper: {
     padding: theme.spacing(4),
     margin: "auto",
-    maxWidth: "90%",
+    width: "100%",
   },
   image: {
     width: 128,
@@ -39,86 +37,65 @@ export default function NewsComp(props) {
   return (
     <div className={classes.root}>
       <Grid className={classes.bgColor}>
-        <Paper
+        <Grid
           style={{
-            marginBottom: 10,
+            marginBottom: 20,
             borderColor: "#98FB98",
+            height: 150,
             borderWidth: 2,
-            backgroundColor: "#121212",
-            color: "white",
+            backgroundColor: "#242425",
+            color: "whitesmoke",
           }}
-          className={classes.paper}
+          container
+          spacing={2}
         >
-          <Grid container spacing={4}>
-            <Grid item>
-              <ButtonBase className={classes.image}>
-                <img classname={classes.img} src={props.image} />{" "}
-              </ButtonBase>
-            </Grid>
+          <Grid item>
+            <ButtonBase className={classes.image}>
+              <img className={classes.img} src={props.image} />{" "}
+            </ButtonBase>
+          </Grid>
 
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction="column" spacing={4}>
-                <Grid item xs>
-                  <Typography gutterBottom variant="subtitle1">
-                    <h1>{props.title}</h1>
-                  </Typography>
-                </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={4}>
+              <Grid item xs>
+                <Typography
+                  variant="button"
+                  style={{
+                    fontWeight: 300,
+                  }}
+                >
+                  {props.title}
+                </Typography>
+                <Typography
+                  style={{
+                    fontSize: 7,
+                    marginTop: 5,
+                  }}
+                  variant="overline"
+                  display="block"
+                  gutterBottom
+                >
+                  {props.description}
+                </Typography>
+                <Typography
+                  style={{ fontSize: 8 }}
+                  variant="caption"
+                  display="block"
+                >
+                  {props.date}
+                </Typography>
               </Grid>
             </Grid>
-
-            <Grid item>
-              <Typography>
-                {" "}
+            <Grid alignItems="flex-end" item>
+              <ButtonBase>
                 <a href={props.link} style={{ color: "rgba(59, 200, 246)" }}>
-                  Link{" "}
+                  Link
                 </a>
-              </Typography>
+              </ButtonBase>
             </Grid>
           </Grid>
-        </Paper>
+        </Grid>
       </Grid>
     </div>
   );
 }
-
-//import GridInsideFlexbox from "./GridInsideFlexBox";
-//import Container from "@material-ui/core/Container";
-//import { makeStyles } from "@material-ui/core/styles";
-//import Paper from "@material-ui/core/Paper";
-//import Grids from "./Grids";
-//import Typography from "@material-ui/core/Typography";
-//import ButtonBase from "@material-ui/core/ButtonBase";
-//import { Container } from "react-bootstrap";
-
-/*const useStyles = makeStyles((theme) => ({
-  paper: {
-    height: 90,
-    width: 200,
-    // marginLeft: 30,
-    // marginTop: 10,
-  },
-}));*/
-
-/* 
-      <Box
-        display="flex"
-        alignItems="flex-center"
-        bgcolor="yellow"
-        fontSize={15}
-        fontWeight={100}
-        fontFamily="monospace"
-        css={{ height: 150, width: "80%" }}
-      >
-        
-      </Box> 
-<Box>
-            <img src={props.image} />
-          </Box>
-          <Box flexGrow={1} style={{ marginLeft: 100 }} flexGrow={1}>
-            <h1>{props.title}</h1>
-          </Box>
-          <Box alignItems={"flex-end"}>
-            <a href={props.link} style={{ color: "blue" }}>
-              Link{" "}
-            </a>
-          </Box>{" "} */
