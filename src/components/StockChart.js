@@ -64,7 +64,7 @@ export default function StockChart() {
         fill: false,
         lineTension: 0,
         backgroundColor: "#78a175",
-        borderColor: "#78a175",
+        borderColor: "#98FB98",
 
         borderWidth: 1,
         data: weeklyStockPrices,
@@ -72,10 +72,19 @@ export default function StockChart() {
     ],
   };
   return (
-    <div>
+    <div
+      style={{
+        width: "70%",
+        height: 300,
+        marginLeft: "auto",
+        marginRight: "auto",
+      }}
+    >
       <Line
         data={state}
         options={{
+          responsive: true,
+          maintainAspectRatio: false,
           scales: {
             xAxes: [
               {
@@ -94,8 +103,8 @@ export default function StockChart() {
           },
 
           legend: {
-            display: true,
-            position: "right",
+            display: false,
+            position: "top",
           },
         }}
       />
