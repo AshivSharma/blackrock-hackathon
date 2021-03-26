@@ -5,6 +5,8 @@ module.exports = {
   theme: {
     colors: {
       white: "#ffffff",
+      robinhoodGreen: "#36b388",
+      whitesmoke: "#F5F5F5",
       blue: {
         medium: "#005c98",
       },
