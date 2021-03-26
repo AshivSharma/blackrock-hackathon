@@ -1,0 +1,191 @@
+[
+  {
+    "article": "Tesla factory reported hundreds of COVID-19 cases after reopening",
+    "link": "https://www.engadget.com/tesla-fremont-factory-covid-19-cases-200515835.html",
+    "type": "neutral",
+    "score": 0.0036282050868836294,
+    "ratio": -0.05924273488635534,
+    "keywords": [
+      {
+        "word": "work",
+        "score": 1.019406278
+      },
+      {
+        "word": "health",
+        "score": 0.935543874
+      },
+      {
+        "word": "like",
+        "score": 0.85434434
+      },
+      {
+        "word": "surge",
+        "score": 0.708945442
+      },
+      {
+        "word": "safe",
+        "score": 0.668070165
+      },
+      {
+        "word": "improve",
+        "score": 0.664242943
+      },
+      {
+        "word": "clear",
+        "score": 0.648766473
+      },
+      {
+        "word": "home",
+        "score": 0.592785946
+      },
+      {
+        "word": "case",
+        "score": 0.515277785
+      },
+      {
+        "word": "community",
+        "score": 0.467771937
+      },
+      {
+        "word": "not",
+        "score": -2.5
+      },
+      {
+        "word": "have",
+        "score": -1.6290915200000002
+      },
+      {
+        "word": "infection",
+        "score": -1.46720852
+      },
+      {
+        "word": "decline",
+        "score": -0.985017898
+      },
+      {
+        "word": "unclear",
+        "score": -0.900138741
+      },
+      {
+        "word": "grapple",
+        "score": -0.82767436
+      },
+      {
+        "word": "sick",
+        "score": -0.792895493
+      },
+      {
+        "word": "accommodate",
+        "score": -0.467771937
+      },
+      {
+        "word": "resistance",
+        "score": -0.428807657
+      },
+      {
+        "word": "subside",
+        "score": -0.366912147
+      }
+    ],
+    "version": "7.0.7",
+    "author": "twinword inc.",
+    "email": "help@twinword.com",
+    "result_code": "200",
+    "result_msg": "Success"
+  },
+
+  {
+    "article": "Tesla has closed its forums to launch a social platform and fans are not happy",
+    "link": "https://techcrunch.com/2021/03/05/tesla-has-closed-its-forums-to-launch-a-social-platform-and-fans-are-not-happy/?guccounter=1&guce_referrer=aHR0cDovL2xvY2FsaG9zdDozMDAwLw&guce_referrer_sig=AQAAAB2YN16LkOTFSt0fC_uHe4nv36M6IDJSye1sRFZmQb_g1xogxtOfF5FLy2cIueLWBxcszr1dHaoMENoHuzqNdA8JVRQ4WemVzxlsoDYPok9-D0uEuje8W4m_Y8rj9xOipcLGoRuLFjXRw4BUqvP0R-Jsv2ALnwpE88bikKywfNd9",
+    "type": "positive",
+    "score": 0.11020707444553339,
+    "ratio": 0.5288109949246218,
+    "keywords": [
+      {
+        "word": "encourage",
+        "score": 2.310740601
+      },
+      {
+        "word": "community",
+        "score": 1.871087748
+      },
+      {
+        "word": "support",
+        "score": 1.540493734
+      },
+      {
+        "word": "create",
+        "score": 1.305320032
+      },
+      {
+        "word": "new",
+        "score": 1.28641593
+      },
+      {
+        "word": "supporter",
+        "score": 1.136247618
+      },
+      {
+        "word": "top",
+        "score": 1.08638639
+      },
+      {
+        "word": "work",
+        "score": 1.019406278
+      },
+      {
+        "word": "fan",
+        "score": 1.002954873
+      },
+      {
+        "word": "improvement",
+        "score": 0.984606369
+      },
+      {
+        "word": "not",
+        "score": -1.875
+      },
+      {
+        "word": "bad",
+        "score": -0.992633864
+      },
+      {
+        "word": "unhappy",
+        "score": -0.988157445
+      },
+      {
+        "word": "disaster",
+        "score": -0.973866894
+      },
+      {
+        "word": "demise",
+        "score": -0.82767436
+      },
+      {
+        "word": "post",
+        "score": -0.5768684460000001
+      },
+      {
+        "word": "attack",
+        "score": -0.562738918
+      },
+      {
+        "word": "have",
+        "score": -0.488727456
+      },
+      {
+        "word": "other",
+        "score": -0.43174928700000004
+      },
+      {
+        "word": "implore",
+        "score": -0.366912147
+      }
+    ],
+    "version": "7.0.7",
+    "author": "twinword inc.",
+    "email": "help@twinword.com",
+    "result_code": "200",
+    "result_msg": "Success"
+  }
+]
