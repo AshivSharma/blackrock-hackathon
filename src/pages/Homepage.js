@@ -18,7 +18,7 @@ export default function Homepage() {
   const [isLoading, setisLoading] = useState();
 
   var Alpha = require("alpha_vantage_api_wrapper").Alpha;
-  var alpha = new Alpha("B02YL7M1461GOMXJ");
+  var alpha = new Alpha("secret");
 
   const searchStock = async (input) => {
     try {
