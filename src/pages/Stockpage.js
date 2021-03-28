@@ -24,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Stockpage(props) {
   var Alpha = require("alpha_vantage_api_wrapper").Alpha;
-  var alpha = new Alpha("X5UGPY5ZUG3ALVEX");
+  var alpha = new Alpha("secret");
 
-  var NewsAPIKey = "4b599d462bdd4451a33eb3b8978a26ba";
+  var NewsAPIKey = "secret";
   const stockSelected = "Tesla";
   const [yesterDayPrice, setYesterDayPrice] = useState();
   const [currentDayPrice, setCurrentDayPrice] = useState();
